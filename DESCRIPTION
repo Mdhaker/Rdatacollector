@@ -1,0 +1,16 @@
+Package: datacollector
+Title: Data Collector
+Version: 0.0.0.9000
+Authors@R: person("MDA", "Abdeljawed", email = "med.dhaker.abdeljawed@gmail.com", role = c("aut", "cre"))
+Description: this package collects data from web and social media
+License: Free
+Depends: R (>= 3.2.3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+prerequisite:
+1- Download Apache Zookeeper  : https://zookeeper.apache.org/releases.html#download,
+2- Start Zookeeper server instance : https://zookeeper.apache.org/doc/r3.3.3/zookeeperStarted.html#sc_InstallingSingleMode
+3- Downlaod Apache Drill : https://drill.apache.org/download/ 
+5- start drillbit server : https://drill.apache.org/docs/starting-drill-in-distributed-mode/
+Note : the package should run in the same drillbit node
