@@ -1,7 +1,7 @@
 .onLoad <- function(libname, pkgname)
 {
   if(pkgname %in% rownames(installed.packages()))
-      {pathToLoad = ind.package(pkgname);}
+      {pathToLoad = find.package(pkgname);}
    else
     {pathToLoad = paste0(find.package(pkgname),"/inst");}
   #installing rJava
