@@ -4,17 +4,21 @@
 #' This function scraps data from a web page and save it into an excel sheet
 #' Data such : Email, phones numbers, medias, links, social media links, and html tables
 #'
-#' @param path Path to the excel file
+#' Example of usage :
+#'
+#' collectDataFromWebPage("https://www.brainyquote.com/quotes/authors/a/albert_einstein.html","science")
+#' this example will return all the quotes of albert einstein containing the word science
+#' @param excelpath Path to the excel file
 #' @param url url of the target web page
 
 #' @return void
 #' @export
 
-collectDataFromWebPage<- function(path,url)
+collectDataFromWebPage<- function(excelpath,url)
 {
   scrapInterface <- rJava::.jnew("utils/Rinterface",url);
   rJava::.jmethods(scrapInterface);
-  rJava::.jcall(scrapInterface,"V","scrapInFile",path);
+  rJava::.jcall(scrapInterface,"V","scrapInFile",excelpath);
 }
 #' Download images from a target page
 #'
