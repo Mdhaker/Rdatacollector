@@ -1,7 +1,7 @@
 .onLoad <- function(libname, pkgname)
 {
   if(pkgname %in% rownames(installed.packages()))
-      {pathToLoad = find.package(pkgname);}
+      {pathToLoad = paste0(find.package(pkgname),"/inst");}
    else
     {pathToLoad = find.package(pkgname);}
   #installing rJava
@@ -18,11 +18,11 @@
     {
     rJava::.jpackage(pkgname, lib.loc=libname);
     rJava::.jinit();
-    rJava::.jaddClassPath(paste0(pathToLoad,"/inst/java/JScrap.jar"));
-    rJava::.jaddClassPath(paste0(pathToLoad,"/inst/java/JSocial.jar"));
+    rJava::.jaddClassPath(paste0(pathToLoad,"/java/JScrap.jar"));
+    rJava::.jaddClassPath(paste0(pathToLoad,"/java/JSocial.jar"));
     scrapInterface <- rJava::.jnew("utils/Rinterface",url);
     socialInterface <<- rJava::.jnew("com/datacollection/utils/Rinterface");
-    rJava::.jcall(scrapInterface,"V","setChromeDriverPath",paste0(pathToLoad,"/webDriver"));
+    rJava::.jcall(scrapInterface,"V","setChromeDriverPath",pathToLoad);
     }
   else
     print("please setup java envirement");
