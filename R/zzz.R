@@ -22,7 +22,7 @@
     rJava::.jaddClassPath(paste0(pathToLoad,"/inst/java/JSocial.jar"));
     scrapInterface <- rJava::.jnew("utils/Rinterface",url);
     socialInterface <<- rJava::.jnew("com/datacollection/utils/Rinterface");
-    rJava::.jcall(scrapInterface,"V","setChromeDriverPath",pathToLoad);
+    rJava::.jcall(scrapInterface,"V","setChromeDriverPath",paste0(pathToLoad,"/webDriver"));
     }
   else
     print("please setup java envirement");
