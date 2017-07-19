@@ -5,11 +5,9 @@
 #' Data such : Email, phones numbers, medias, links, social media links, and html tables
 #'
 #' Example of usage :
-#'
-#' collectDataFromWebPage("https://www.brainyquote.com/quotes/authors/a/albert_einstein.html","science")
-#' this example will return all the quotes of albert einstein containing the word science
+#' collectDataFromWebPage(<path\file.xls>,"https://www.apec.fr/")
 #' @param excelpath Path to the excel file
-#' @param url url of the target web page
+#' @param url url of the target web page11
 
 #' @return void
 #' @export
@@ -23,7 +21,8 @@ collectDataFromWebPage<- function(excelpath,url)
 #' Download images from a target page
 #'
 #' This function exctract all image files from a target webpage and download it into a provided directory path
-#'
+#' Example of usage :
+#' downloadImages(<path>)
 #' @param path Path to the download directory
 #' @param url url of the target web page
 
@@ -153,6 +152,10 @@ collectMedias <- function(url,media)
 #' Collect by keyword links from a web page
 #'
 #'this function exctract webpage content by keyword, and return the blocs containing that keyword
+#'Example of usage :
+#'
+#' collectContentByKey("https://www.brainyquote.com/quotes/authors/a/albert_einstein.html","science")
+#' this example will return all the quotes of albert einstein containing the word science
 #' @param url url of the target web page
 #' @param key keyword to search for
 #' @return list of bloc content containing that keyword
