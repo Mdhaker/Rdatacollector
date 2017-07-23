@@ -14,7 +14,8 @@ selectData <- function(path,item="id",where="",file="",append=FALSE,flatten=FALS
 {
   return (rJava::.jcall(socialInterface,"[Ljava/lang/String;","selectFrom",path,item,where,file,append,flatten));
 }
-#' Count data rows in a json file#'
+#' Count data rows in a json file
+#'
 #' This function excutes an SQL select count(*) query over a json file and return data row count'
 #'
 #' @param path Path to the json file
@@ -35,9 +36,8 @@ countData <- function(path,item="*",flatten=FALSE,rootarray)
 #' @param node Facebook graph node id, eg(Page id, User id, Post id)...
 #' @param edge Graph edge name, eg(comment,posts,feed,likes) ...
 #' @param user TRUE to use user token for the edge call, FALSE to use the App token
-
 #' @return
-#' @export
+
 
 jsonLoadFromFacebook <- function(path,node,edge,user=FALSE,params=rJava::.jarray(c("")))
 {
@@ -52,9 +52,7 @@ jsonLoadFromFacebook <- function(path,node,edge,user=FALSE,params=rJava::.jarray
 #' @param path Path to save the data
 #' @param node Facebook node type : user, page, event, group
 #' @param query Text query of the search request
-
 #' @return
-#' @export
 
 jsonSearchFromFacebook <- function(path,node="page",query)
 {
@@ -74,9 +72,8 @@ jsonSearchFromFacebook <- function(path,node="page",query)
 #' @param noneof filter tweets by excluding all the words in this string seperated by space ...
 #' @param attitude postive attitude : True, negative attitude : False
 #' @param question question exist in tweet : True else false.
-
 #' @return void
-#' @export
+
 jsonSearchTweetsByFilter <- function(path,lang="en",exact="",allword="",hashtags="",noneWords="",oneOf="",
                                    accounts="",attitude=TRUE,question=FALSE)
 {
@@ -91,10 +88,7 @@ jsonSearchTweetsByFilter <- function(path,lang="en",exact="",allword="",hashtags
 #'
 #' @param path directory path to save the json data file
 #' @param query fetch tweets by the provided text query
-
-
 #' @return void
-#' @export
 jsonSearchTweetsByQuery <- function(path,query)
 {
   return(rJava::.jcall(socialInterface,"Ljava/lang/String;","getTweets",path,query));
@@ -108,11 +102,7 @@ jsonSearchTweetsByQuery <- function(path,query)
 #' @param path path to save the data
 #' @param query text query to search for activities
 #' @param lang language code of the activities ...
-
-
 #' @return void
-#' @export
-
 jsonSearchFomGooglePlus <- function(path,query="",lang="en")
 {
   return(rJava::.jcall(socialInterface,"Ljava/lang/String;","getActivities",path,query,lang));
@@ -122,9 +112,7 @@ jsonSearchFomGooglePlus <- function(path,query="",lang="en")
 #' this function calls twitter and google+ api endpoints to retreive activities and tweets then save into json files
 #' @param path path of the json file to save
 #' @param query Search query
-
 #' @return void
-#' @export
 
 jsonLoadTopics <- function(path,query)
 {
@@ -138,7 +126,6 @@ jsonLoadTopics <- function(path,query)
 #' @param query query of the request
 
 #' @return void
-#' @export
 jsonSearchFromYoutube<-function(path,type="",query)
 {
   socialInterface <- rJava::.jnew("com/datacollection/utils/Rinterface");
@@ -152,7 +139,6 @@ jsonSearchFromYoutube<-function(path,type="",query)
 #' @param id id of the element
 
 #' @return void
-#' @export
 jsonLoadFromYoutube<-function(path,type,id)
 {
   return (rJava::.jcall(socialInterface,"Ljava/lang/String;","getYoutube",path,type,id));
@@ -164,9 +150,7 @@ jsonLoadFromYoutube<-function(path,type,id)
 #' @param path Path to save the json file
 #' @param type type of element to retreive (channel, video, playlist)
 #' @param ids array of ids
-
 #' @return void
-#' @export
 jsonLoadByListFromYoutube<-function(path,type,ids)
 {
   ids=rJava::.jarray(ids);
@@ -177,10 +161,7 @@ jsonLoadByListFromYoutube<-function(path,type,ids)
 #' this function collect and fetch data about facebook and google+ users and save it into a json file
 #' @param path Path to save file
 #' @param query Search query
-
 #' @return void
-#' @export
-
 jsonLoadUsers <- function(path,query)
 {
   return (rJava::.jcall(socialInterface,"V","getUsers",path,query));

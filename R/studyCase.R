@@ -4,9 +4,8 @@
 #' then parse it and save into an R dataframe and spredsheet excel file.
 #'
 #' @param nodeid Id if the target facebook node
-#' @param user FALSE to use an application based call, TRUE to use Autenticated calls (used to fetch private groups and events)
+#' @param user FALSE to use an application based call, TRUE t o use Autenticated calls (used to fetch private groups and events)
 #' @param rootPath path to save the generated results
-#' @return R dataframe representing the result node
 #' @export
 collectFacebookNodes<-function(nodeid,edge="feed",user=FALSE,rootPath="/home/dhaker/Desktop/Ghandi/")
 {
@@ -125,7 +124,6 @@ collectFacebookNodes<-function(nodeid,edge="feed",user=FALSE,rootPath="/home/dha
 #'
 #' @param query text query to use for the search
 #' @param rootPath path to save the generated results
-#' @return R dataframe representing the search result
 #' @export
 searchFacebookNodes<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 {
@@ -198,7 +196,6 @@ searchFacebookNodes<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 #'
 #' @param query text query to use for the search
 #' @param rootPath path to save the generated results
-#' @return R dataframe representing the search result
 #' @export
 searchFromTwitter<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 {
@@ -251,7 +248,6 @@ searchFromTwitter<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 #'
 #' @param query text query to use for the search
 #' @param rootPath path to save the generated results
-#' @return R dataframe representing the search result
 #' @export
 searchFromGooglePlus<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 {
@@ -301,7 +297,7 @@ searchFromGooglePlus<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 #'
 #' @param query text query to use for the search
 #' @param rootPath path to save the generated results
-#' @return R dataframe representing the search result
+#'
 #' @export
 searchFromYouTube<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 {

@@ -17,5 +17,5 @@ void
 \description{
 This function exctract all image files from a target webpage and download it into a provided directory path
 Example of usage :
-downloadImages(<path>)
+downloadImages(<path>,"https://www.wallpaper.com/art")
 }

@@ -2,8 +2,7 @@
 % Please edit documentation in R/JSocial.R
 \name{countData}
 \alias{countData}
-\title{Count data rows in a json file#'
-This function excutes an SQL select count(*) query over a json file and return data row count'}
+\title{Count data rows in a json file}
 \usage{
 countData(path, item = "*", flatten = FALSE, rootarray)
 }
@@ -16,6 +15,5 @@ countData(path, item = "*", flatten = FALSE, rootarray)
 number of rows in the target file
 }
 \description{
-Count data rows in a json file#'
 This function excutes an SQL select count(*) query over a json file and return data row count'
 }

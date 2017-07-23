@@ -11,9 +11,6 @@ searchFromGooglePlus(query, rootPath = "/home/dhaker/Desktop/Ghandi/")
 
 \item{rootPath}{path to save the generated results}
 }
-\value{
-R dataframe representing the search result
-}
 \description{
 This function searchs google plus activities using a text query, then parse the result into an R dataframe and spreedSheet xls
 }

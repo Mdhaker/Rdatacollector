@@ -11,9 +11,6 @@ searchFacebookNodes(query, rootPath = "/home/dhaker/Desktop/Ghandi/")
 
 \item{rootPath}{path to save the generated results}
 }
-\value{
-R dataframe representing the search result
-}
 \description{
 This function searchs facebook nodes including groups and events and pages,
 then parse the results and save into an R dataframe and spredsheet excel file.

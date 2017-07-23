@@ -10,12 +10,9 @@ collectFacebookNodes(nodeid, edge = "feed", user = FALSE,
 \arguments{
 \item{nodeid}{Id if the target facebook node}
 
-\item{user}{FALSE to use an application based call, TRUE to use Autenticated calls (used to fetch private groups and events)}
+\item{user}{FALSE to use an application based call, TRUE t o use Autenticated calls (used to fetch private groups and events)}
 
 \item{rootPath}{path to save the generated results}
-}
-\value{
-R dataframe representing the result node
 }
 \description{
 This function collect data from facebook (nodes/edge) couple such posts and feed in pages, groups and events,

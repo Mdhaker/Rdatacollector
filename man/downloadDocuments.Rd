@@ -15,5 +15,5 @@ downloadDocuments(path, url)
 void
 }
 \description{
-This functions exctract all document files into a provided directory path
+This functions extract all documents files into a provided directory path
 }

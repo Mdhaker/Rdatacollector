@@ -1,18 +1,18 @@
 
 #' Collect data from a web page
 #'
-#' This function scraps data from a web page and save it into an excel sheet
+#' This function scraps data from a web page and save it into an excel sheet. </<br>
 #' Data such : Email, phones numbers, medias, links, social media links, and html tables
 #'
 #' Example of usage :
-#' collectDataFromWebPage(<path\file.xls>,"https://www.apec.fr/")
+#' collectWebPageData(<path\file.xls>,"https://www.apec.fr/")
 #' @param excelpath Path to the excel file
 #' @param url url of the target web page11
 
 #' @return void
 #' @export
 
-collectDataFromWebPage<- function(excelpath,url)
+collectWebPageData<- function(excelpath,url)
 {
   scrapInterface <- rJava::.jnew("utils/Rinterface",url);
   rJava::.jmethods(scrapInterface);
@@ -22,7 +22,7 @@ collectDataFromWebPage<- function(excelpath,url)
 #'
 #' This function exctract all image files from a target webpage and download it into a provided directory path
 #' Example of usage :
-#' downloadImages(<path>)
+#' downloadImages(<path>,"https://www.wallpaper.com/art")
 #' @param path Path to the download directory
 #' @param url url of the target web page
 
@@ -36,7 +36,7 @@ downloadImages <- function(path,url)
 
 #' Download documents from a target page
 #'
-#' This functions exctract all document files into a provided directory path
+#' This functions extract all documents files into a provided directory path
 #'
 #' @param path Path to the download directory
 #' @param url url of the target web page
@@ -52,7 +52,7 @@ downloadDocuments <- function(path,url)
 
 #' Download videos from a target page
 #'
-#' This functions exctract all video files and download into a provided directory path
+#' This functions extract all video files and download it into a provided directory path
 #'
 #' @param path Path to the download directory
 #' @param url url of the target web page
@@ -65,24 +65,9 @@ downloadVideos <- function(path,url)
   rJava::.jcall(scrapInterface,"V","downloadVideos",path);
 }
 
-#' Search content by key
+#' Collect data from a whole website
 #'
-#' return html blocs by keyword search and save into excel sheet
-#'
-#' @param path Path to the excel file
-#' @param url url of the target web page
-#' @param key key to search for
-
-#' @return void
-#' @export
-saveByKeyWord <- function(path,url,key)
-{
-  scrapInterface <- rJava::.jnew("utils/Rinterface",url);
-  rJava::.jcall(scrapInterface,"V","saveSearch",path,key);
-}
-#' Collect data from the whole website
-#'
-#' this function crawls the whole website for the requested data and save each scraped page into
+#' this function crawls a whole website for the requested data and save each scraped page into
 #' an excel sheet, and download the availble media in a sepcific directory
 #'
 #' @param excelpath Path to the excel file
@@ -91,19 +76,19 @@ saveByKeyWord <- function(path,url,key)
 
 #' @return void
 #' @export
-collectDataFromWebSite <- function(url,excelpath,downloadpath)
+collectWebSiteData <- function(url,excelpath,downloadpath)
 {
   scrapInterface <- rJava::.jnew("utils/Rinterface",url);
   rJava::.jcall(scrapInterface,"V","crawlSite",excelpath,downloadpath);
 }
 #' Collect emails from a web page
 #'
-#'this function exctract all emails from a web page
+#'this function extract all emails from a web page
 #' @param url url of the target web page
 
 #' @return list of emails
 #' @export
-collectmails <- function(url)
+collectEmails <- function(url)
 {
   scrapInterface <- rJava::.jnew("utils/Rinterface",url);
   rJava::.jmethods(scrapInterface);
@@ -151,11 +136,7 @@ collectMedias <- function(url,media)
 
 #' Collect by keyword links from a web page
 #'
-#'this function exctract webpage content by keyword, and return the blocs containing that keyword
-#'Example of usage :
-#'
-#' collectContentByKey("https://www.brainyquote.com/quotes/authors/a/albert_einstein.html","science")
-#' this example will return all the quotes of albert einstein containing the word science
+#'This function extract a webpage content by keyword, and return the blocs containing that keyword
 #' @param url url of the target web page
 #' @param key keyword to search for
 #' @return list of bloc content containing that keyword

@@ -15,10 +15,5 @@ collectContentByKey(url, key)
 list of bloc content containing that keyword
 }
 \description{
-this function exctract webpage content by keyword, and return the blocs containing that keyword
-Example of usage :
-}
-\details{
-collectContentByKey("https://www.brainyquote.com/quotes/authors/a/albert_einstein.html","science")
-this example will return all the quotes of albert einstein containing the word science
+This function extract a webpage content by keyword, and return the blocs containing that keyword
 }

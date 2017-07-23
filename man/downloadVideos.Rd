@@ -15,5 +15,5 @@ downloadVideos(path, url)
 void
 }
 \description{
-This functions exctract all video files and download into a provided directory path
+This functions extract all video files and download it into a provided directory path
 }
