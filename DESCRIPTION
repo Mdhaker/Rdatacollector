@@ -12,5 +12,5 @@ Prerequisite:
 1- Setup java environment : including JAVA_HOME and jre/jdk  path.
 2- Setup Apache Zookeeper  : Download Zookeeper from https://zookeeper.apache.org/releases.html#download, Start server instance : https://zookeeper.apache.org/doc/r3.3.3/zookeeperStarted.html#sc_InstallingSingleMode
 3- Setup Apache Drill : download drill from https://drill.apache.org/download/ and start server instance : https://drill.apache.org/docs/starting-drill-in-distributed-mode/
-4- Chrome installed
+4- Chrome installed :
 Note : the package should run in the same node with drillbit instance
