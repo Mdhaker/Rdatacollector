@@ -302,12 +302,13 @@ searchFromGooglePlus<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 searchFromYouTube<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 {
   pathToJson <-paste0(rootPath,paste0("youtube/searchResults/",stringr::str_trim(query),"/"));
+  channelspath<-jsonSearchFromYoutube(pathToJson,"channel",query);
+  videospath<-jsonSearchFromYoutube(pathToJson,"video",query);
   #search for channels
-  youtubeSearchPath<-jsonSearchFromYoutube(pathToJson,"",query);
-  channelspath<-jsonLoadByListFromYoutube(pathToJson,"channel",selectData(youtubeSearchPath,"id.channelId as id",where="id.kind like 'youtube#channel'",flatten = TRUE));
+  channelspath<-jsonLoadByListFromYoutube(pathToJson,"channel",selectData(channelspath,"id.channelId as id",where="id.kind like 'youtube#channel'",flatten = TRUE));
   channelCount <- countData(channelspath,flatten = TRUE,rootarray = "data");
   #search for video
-  videospath<-jsonLoadByListFromYoutube(pathToJson,"video",selectData(youtubeSearchPath,"id.videoId as id",where="id.kind like 'youtube#video'",flatten = TRUE));
+  videospath<-jsonLoadByListFromYoutube(pathToJson,"video",selectData(videospath,"id.videoId as id",where="id.kind like 'youtube#video'",flatten = TRUE));
   videosCount <- countData(videospath,flatten = TRUE,rootarray = "data");
   if((channelCount > 0))
   {
