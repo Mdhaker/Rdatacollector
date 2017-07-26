@@ -12,7 +12,7 @@
   #installing stringi
   if(! ("stringi" %in% rownames(installed.packages())) )
     {
-      install.packages("stringi");
+      install.packages("stringr");
     }
   if( stringi::stri_length(Sys.getenv("JAVA_HOME")) > 0)
     {
