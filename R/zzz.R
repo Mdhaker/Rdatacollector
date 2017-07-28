@@ -20,6 +20,7 @@
     rJava::.jinit();
     rJava::.jaddClassPath(paste0(pathToLoad,"/java/JScrap.jar"));
     rJava::.jaddClassPath(paste0(pathToLoad,"/java/JSocial.jar"));
+    scrapInterface <- rJava::.jnew("utils/Rinterface",url);
     socialInterface <<- rJava::.jnew("com/datacollection/utils/Rinterface",pathToLoad);
     rJava::.jcall(scrapInterface,"V","setChromeDriverPath",pathToLoad);
     }
