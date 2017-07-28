@@ -10,9 +10,14 @@
       install.packages("rJava");
     }
   #installing stringi
-  if(! ("stringi" %in% rownames(installed.packages())) )
+  if(! ("stringr" %in% rownames(installed.packages())) )
     {
       install.packages("stringr");
+    }
+   #installing stringi
+  if(! ("xlsx" %in% rownames(installed.packages())) )
+    {
+      install.packages("xlsx");
     }
   if( stringi::stri_length(Sys.getenv("JAVA_HOME")) > 0)
     {
