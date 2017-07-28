@@ -5,17 +5,17 @@
    else
     {pathToLoad = paste0(find.package(pkgname),"/inst");}
   #installing rJava
-  if(! ("rJava" %in% rownames(installed.packages())) )
+  if(("rJava" %in% rownames(installed.packages())) == FALSE )
     {
       install.packages("rJava");
     }
   #installing stringi
-  if(! ("stringr" %in% rownames(installed.packages())) )
+  if(("stringr" %in% rownames(installed.packages())) == FALSE)
     {
       install.packages("stringr");
     }
    #installing stringi
-  if(! ("xlsx" %in% rownames(installed.packages())) )
+  if(("xlsx" %in% rownames(installed.packages())) == FALSE)
     {
       install.packages("xlsx");
     }
