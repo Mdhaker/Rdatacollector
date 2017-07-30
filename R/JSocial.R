@@ -128,7 +128,6 @@ jsonLoadTopics <- function(path,query)
 #' @return void
 jsonSearchFromYoutube<-function(path,type="",query)
 {
-  socialInterface <- rJava::.jnew("com/datacollection/utils/Rinterface");
   return (rJava::.jcall(socialInterface,"Ljava/lang/String;","searchYoutube",path,type,query));
 }
 #' Collect Data from youtube
