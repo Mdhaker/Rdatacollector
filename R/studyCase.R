@@ -1,17 +1,18 @@
 #' Collect facebook data
 #'
-#' This function collect data from facebook (nodes/edge) couple such posts and feed in pages, groups and events,
+#' This function collect data from a facebook node that could be a page, group, event or else based on a given
+#' edge which represents the type of data to collect such, posts and feed
 #' then parse it and save into an R dataframe and spredsheet excel file.
 #'
-#' @param nodeid Id if the target facebook node
-#' @param user FALSE to use an application based call, TRUE t o use Autenticated calls (used to fetch private groups and events)
+#' @param nodeid Id of the target facebook node
+#' @param user FALSE to use an application based call, TRUE to use an Autenticated call (used to fetch private groups and events)
 #' @param rootPath path to save the generated results
 #' @export
-collectFacebookNodes<-function(nodeid,edge="feed",user=FALSE,rootPath="/home/dhaker/Desktop/Ghandi/")
+collectFacebookNodes<-function(nodeid,edge="feed",user=FALSE,rootPath)
 {
       #parsing posts to dataframe
       #****
-      pathToJson <-paste0(rootPath,"/facebook/",nodeid);
+      pathToJson <-paste0(rootPath,nodeid);
       resultsource <- jsonLoadFromFacebook(pathToJson,nodeid,edge,user = user);
       postscount <-countData(resultsource,flatten = TRUE,rootarray = "data");
       if(postscount > 0)
@@ -37,10 +38,10 @@ collectFacebookNodes<-function(nodeid,edge="feed",user=FALSE,rootPath="/home/dha
         postComments[i]<-length(selectData(resultsource,paste0("FLATTEN(root.data[",i,"].comments.data) as comments")));
       }
       postComments <-unlist(postComments);
-      data <- data.frame();
-      data=cbind(fromId,fromName,postsIds,postsMessage,postsTypes,postsCreationTime,postsUpdateTime,postsShares,postLikes,postComments);
-      save(data,file=paste0(pathToJson,paste0(edge,".rda")));
-      xlsx::write.xlsx(x = data, file = paste0(pathToJson,"/",edge,".xlsx"),
+      dataedge <- data.frame();
+      dataedge=cbind(fromId,fromName,postsIds,postsMessage,postsTypes,postsCreationTime,postsUpdateTime,postsShares,postLikes,postComments);
+      save(dataedge,file=paste0(pathToJson,"/",paste0(edge,".rda")));
+      xlsx::write.xlsx(x = dataedge, file = paste0(pathToJson,"/",edge,".xlsx"),
                        sheetName = edge);
       #parsing comments to data frame
       comment_postIds = list();
@@ -104,11 +105,16 @@ collectFacebookNodes<-function(nodeid,edge="feed",user=FALSE,rootPath="/home/dha
       comment_from_id = unlist(comment_from_id);
       comment_from_name = unlist(comment_from_name);
       comment_urls = unlist(comment_urls);
-      data=cbind(comment_postIds,comment_ids,comment_message,comment_time,comment_from_id,comment_from_name,comment_likescount,comment_urls);
-      save(data,file=paste0(pathToJson,paste0("Comments",edge,".rda")));}
-      xlsx::write.xlsx(x = data, file = paste0(pathToJson,"/",edge,"Comments.xlsx"),
-                       sheetName = "comments");
-      return(data);
+      if( length(comment_postIds)>0)
+      {
+        data=cbind(comment_postIds,comment_ids,comment_message,comment_time,comment_from_id,comment_from_name,comment_likescount,comment_urls);
+
+        save(data,file=paste0(pathToJson,"/","comments.rda"));
+        xlsx::write.xlsx(x = data, file = paste0(pathToJson,"/","/comments.xlsx"),
+                       sheetName = "comments");}
+      }
+
+      return(dataedge);
       }
       else
       {
@@ -119,13 +125,13 @@ collectFacebookNodes<-function(nodeid,edge="feed",user=FALSE,rootPath="/home/dha
 
 #' Search facebook data
 #'
-#' This function searchs facebook nodes including groups and events and pages,
-#' then parse the results and save into an R dataframe and spredsheet excel file.
+#' This function searchs facebook nodes including groups, events and pages;
+#' then parse the results and save into an R dataframe and an excel spredsheet file.
 #'
 #' @param query text query to use for the search
 #' @param rootPath path to save the generated results
 #' @export
-searchFacebookNodes<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
+searchFacebookNodes<-function(query,rootPath)
 {
   nodeTypes <-c();
   nodeIds <-c();
@@ -144,7 +150,6 @@ searchFacebookNodes<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
       nodeTypes <-c(nodeTypes,"Page");
       nodeIds <-c(nodeIds,selectData(pagesResultSource,paste0("root.data[",i,"].id as id")));
       nodeNames <-c(nodeNames,selectData(pagesResultSource,paste0("root.data[",i,"].name as name")));
-      nodeCategories <-c(nodeCategories,selectData(pagesResultSource,paste0("root.data[",i,"].category as category")));
     }
   }
   else
@@ -160,7 +165,6 @@ searchFacebookNodes<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
     nodeTypes <-c(nodeTypes,"Group");
     nodeIds <-c(nodeIds,selectData(GroupsResultSource,paste0("root.data[",i,"].id as id")));
     nodeNames <-c(nodeNames,selectData(GroupsResultSource,paste0("root.data[",i,"].name as name")));
-    nodeCategories <-c(nodeCategories,selectData(GroupsResultSource,paste0("root.data[",i,"].category as category")));
 
     }
   }
@@ -176,13 +180,12 @@ searchFacebookNodes<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
     nodeTypes <-c(nodeTypes,"Event");
     nodeIds <-c(nodeIds,selectData(EventsResultSource,paste0("root.data[",i,"].id as id")));
     nodeNames <-c(nodeNames,selectData(EventsResultSource,paste0("root.data[",i,"].name as name")));
-    nodeCategories <-c(nodeCategories,selectData(EventsResultSource,paste0("root.data[",i,"].category as category")));
 
     }
   }
   else
     print("No event found");
-  data =cbind(nodeTypes,nodeIds,nodeNames,nodeCategories);
+  data =cbind(nodeTypes,nodeIds,nodeNames);
   save(data,file=paste0(pathToJson,stringr::str_trim(query),"dataframe.rda"));
   xlsx::write.xlsx(x = data, file = paste0(pathToJson,"spreedSheet.xlsx"));
   return (data);
@@ -192,12 +195,12 @@ searchFacebookNodes<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 }
 #' Search Twitter data
 #'
-#' This function searchs Tweets of the last 7 days from twitter from using a text query, then parse the result into an R dataframe and spreedSheet xls
+#' This function searchs Tweets of the past seven days (week) from twitter using a text query, then parse the result into an R dataframe and also creates an excel spreedSheet
 #'
 #' @param query text query to use for the search
 #' @param rootPath path to save the generated results
 #' @export
-searchFromTwitter<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
+searchFromTwitter<-function(query,rootPath)
 {
   pathToJson <-paste0(rootPath,"/Twitter/",stringr::str_trim(query),"/");
   resultsource <- jsonSearchTweetsByQuery(pathToJson,query);
@@ -249,7 +252,7 @@ searchFromTwitter<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 #' @param query text query to use for the search
 #' @param rootPath path to save the generated results
 #' @export
-searchFromGooglePlus<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
+searchFromGooglePlus<-function(query,rootPath)
 {
   pathToJson <-paste0(rootPath,"/GooglePlus/",stringr::str_trim(query),"/");
   resultsource <- jsonSearchFomGooglePlus(pathToJson,query);
@@ -291,18 +294,102 @@ searchFromGooglePlus<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
   }
 }
 
-#' Search Youtube data
+#' Search Tumblr data
 #'
-#' This function search for videos and channels from youtube using a text query, then parse the result into an R dataframe and spreedSheet xls
+#' This function search for blog posts from Tumblr using a text query, then parse the result into an R dataframe and spreedSheet xls
 #'
 #' @param query text query to use for the search
 #' @param rootPath path to save the generated results
 #'
 #' @export
-searchFromYouTube<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
+searchFromTumblr<-function(query,rootPath)
+{
+  pathToJson <-paste0(rootPath,"/Tumblr/",stringr::str_trim(query),"/");
+  resultsource <- jsonSearchFromTumblr(pathToJson,query);
+  postscount <-countData(resultsource,flatten = TRUE,rootarray = "data");
+  if(postscount > 0)
+  {
+    #collect blog posts data
+    post_id<-selectData(resultsource,"id as name",flatten = TRUE);
+    post_type<-selectData(resultsource,"type as name",flatten = TRUE);
+    post_date<-selectData(resultsource,"date as name",flatten = TRUE);
+    post_state<-selectData(resultsource,"state as name",flatten = TRUE);
+    post_blog<-selectData(resultsource,"blog_name as name",flatten = TRUE);
+    post_tags<-selectData(resultsource,"tags as name",flatten = TRUE);
+    post_format<-selectData(resultsource,"format as name",flatten = TRUE);
+    post_notecount<-selectData(resultsource,"note_count as name",flatten = TRUE);
+    post_summary<-selectData(resultsource,"summary as name",flatten = TRUE);
+    post_caption<-selectData(resultsource,"caption as name",flatten = TRUE);
+
+    print(paste0("Number of rows fetched = ",postscount));
+    data =cbind(post_id,post_type,post_date,post_blog,
+                post_tags,post_format,post_notecount,post_summary,post_caption);
+    save(data,file=paste0(pathToJson,stringr::str_trim(query),"_BlogPosts.rda"));
+    xlsx::write.xlsx(x = data, file = paste0(pathToJson,"/","BlogPosts.xlsx"));
+
+    return (data);
+
+  }
+  else
+  {
+    print("Query returned empty result");
+    return(NULL);
+  }
+}
+
+#' Search Flickr data
+#'
+#' This function search for photos from Flickr based on a text query, then parse the result into an R dataframe and an excel spreedSheet
+#'
+#' @param query text query to use for the search
+#' @param rootPath path to save the generated results
+#'
+#' @export
+searchFromFlickr<-function(query,rootPath)
+{
+  pathToJson <-paste0(rootPath,paste0("flickr/searchResults/",stringr::str_trim(query),"/"));
+  photospath<-jsonSearchFromFlickr(pathToJson,query);
+  photospath<-jsonLoadByListFromFlickr(pathToJson,selectData(photospath,"id as id",flatten = TRUE));
+  PhotoCount <- countData(photospath,flatten = TRUE,rootarray = "data");
+  if((PhotoCount > 0))
+  {
+    photoID<-selectData(photospath,"id as alias",flatten=TRUE);
+    ownerID<-selectData(photospath,"owner.nsid as alias",flatten=TRUE);
+    ownerRealName<-selectData(photospath,"owner.realname as alias",flatten=TRUE);
+    ownerUserName<-selectData(photospath,"owner.username as alias",flatten=TRUE);
+    ownerLocation<-selectData(photospath,"owner.location as alias",flatten=TRUE);
+    photoTitle<-selectData(photospath,"title._content as alias",flatten=TRUE);
+    photoDescription<-selectData(photospath,"description._content as alias",flatten=TRUE);
+    photoDateTaken<-selectData(photospath,"dates.taken as alias",flatten=TRUE);
+    photoDateUpdate<-selectData(photospath,"dates.lastupdate as alias",flatten=TRUE);
+    photoViews<-selectData(photospath,"views as alias",flatten=TRUE);
+    photoComments<-selectData(photospath,"comments._content as alias",flatten=TRUE);
+    photoPeople<-selectData(photospath,"people.haspeople as alias",flatten=TRUE);
+
+    photoFrame <-cbind(photoID,ownerID,ownerRealName,ownerUserName,ownerLocation,photoTitle,
+                       photoDescription,photoDateTaken,photoDateUpdate,photoViews,photoComments,photoPeople);
+    photoFrame <-data.frame(photoFrame);
+    names(photoFrame)<-c("photo ID","Owner ID","Owner real name","Owner username","Owner location",
+                           "Photo title","Photo description","Photo date","Photo update date","Number of Views","Number of comments","Number of tagged people");
+    save(photoFrame,file=paste0(pathToJson,stringr::str_trim(query),"_photos#list.rda"));
+    xlsx::write.xlsx(x = photoFrame, file = paste0(pathToJson,stringr::str_trim(query),"_photos#list.xlsx"));
+  }
+  return(photoFrame);
+  }
+
+
+#' Search Youtube data
+#'
+#' This function search for videos and channels from youtube using a text query, then parse the result into an R dataframe and also an excel spreedSheet
+#'
+#' @param query text query to use for the search
+#' @param rootPath path to save the generated results
+#'
+#' @export
+searchFromYouTube<-function(query,rootPath)
 {
   pathToJson <-paste0(rootPath,paste0("youtube/searchResults/",stringr::str_trim(query),"/"));
-  channelspath<-jsonSearchFromYoutube(pathToJson,"channel",query);
+  #channelspath<-jsonSearchFromYoutube(pathToJson,"channel",query);
   videospath<-jsonSearchFromYoutube(pathToJson,"video",query);
   #search for channels
   channelspath<-jsonLoadByListFromYoutube(pathToJson,"channel",selectData(channelspath,"id.channelId as id",where="id.kind like 'youtube#channel'",flatten = TRUE));
@@ -310,7 +397,9 @@ searchFromYouTube<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
   #search for video
   videospath<-jsonLoadByListFromYoutube(pathToJson,"video",selectData(videospath,"id.videoId as id",where="id.kind like 'youtube#video'",flatten = TRUE));
   videosCount <- countData(videospath,flatten = TRUE,rootarray = "data");
-  if((channelCount > 0))
+
+
+   if((channelCount > 0))
   {
   channelIds<-selectData(channelspath,"id as alias",flatten=TRUE);
   channelTypes<-selectData(channelspath,"kind as alias",flatten=TRUE);
@@ -330,6 +419,7 @@ searchFromYouTube<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
   save(channelFrame,file=paste0(pathToJson,"/channel/",stringr::str_trim(query),"_channel#list.rda"));
   xlsx::write.xlsx(x = channelFrame, file = paste0(pathToJson,"/channel/",stringr::str_trim(query),"_channel#list.xlsx"));
   }
+
   if (videosCount >0)
   {
     videoIds<-selectData(videospath,"id as alias",flatten=TRUE);
@@ -352,8 +442,10 @@ searchFromYouTube<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
                            "Live","Number of views", "Video tags","Video dislike","Video like","Video favorite", "Video Comments");
     save(videoFrame,file=paste0(pathToJson,"/video/",stringr::str_trim(query),"_video#list.rda"));
     xlsx::write.xlsx(x = videoFrame, file = paste0(pathToJson,"/video/",stringr::str_trim(query),"_video#list.xlsx"));
+    return(videoFrame);
   }
-  if( (videosCount == 0) && (channelCount == 0))
+  if( (videosCount == 0) #&& (channelCount == 0)
+      )
   {
     print("Query returned empty result");
   }
@@ -361,7 +453,7 @@ searchFromYouTube<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 
 #' Collect youtube data
 #'
-#' This function collect data about a specific youtube element attached to videos and channels including activities, playlists, subscriptions, comments and video captions track
+#' This function collect data about a specific youtube element attached to videos and channels including activities, playlists, subscriptions, comments and video captions tracks
 #' then parse it and save it into an R dataframe and an excel spredsheet file.
 #'
 #' @param type element type to fetch ("activity","playlist","comment","subscription","caption")
@@ -369,7 +461,7 @@ searchFromYouTube<-function(query,rootPath="/home/dhaker/Desktop/Ghandi/")
 #' @param rootPath path to save the generated results
 #' @return R dataframe representing the result node
 #' @export
-collectFromYoutube<-function(type,id,rootPath="/home/dhaker/Desktop/Ghandi/")
+collectFromYoutube<-function(type,id,rootPath)
 {
   pathToJson <-paste0(rootPath,paste0("/youtube#",type,"/"));
   youtubepath<-jsonLoadFromYoutube(pathToJson,type,id);

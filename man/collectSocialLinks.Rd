@@ -13,5 +13,5 @@ collectSocialLinks(url)
 list of social media links
 }
 \description{
-this function exctract all social medias links from a web page
+this function extract all social medias links from a web page and return it as an R list
 }

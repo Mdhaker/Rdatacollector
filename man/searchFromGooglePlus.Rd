@@ -4,7 +4,7 @@
 \alias{searchFromGooglePlus}
 \title{Search google plus data}
 \usage{
-searchFromGooglePlus(query, rootPath = "/home/dhaker/Desktop/Ghandi/")
+searchFromGooglePlus(query, rootPath)
 }
 \arguments{
 \item{query}{text query to use for the search}

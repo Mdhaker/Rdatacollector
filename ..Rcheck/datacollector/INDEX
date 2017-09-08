@@ -1,0 +1,15 @@
+collectContentByKey     Collect by keyword links from a web page
+collectEmails           Collect emails from a web page
+collectFacebookNodes    Collect facebook data
+collectFromYoutube      Collect youtube data
+collectMedias           Collect media links from a web page
+collectPhones           Collect phone numbers from a web page
+collectSocialLinks      Collect SocialLinks
+collectWebPageData      Collect data from a web page
+collectWebSiteData      Collect data from a whole website
+searchFacebookNodes     Search facebook data
+searchFromFlickr        Search Flickr data
+searchFromGooglePlus    Search google plus data
+searchFromTumblr        Search Tumblr data
+searchFromTwitter       Search Twitter data
+searchFromYouTube       Search Youtube data

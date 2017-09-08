@@ -13,5 +13,5 @@ collectEmails(url)
 list of emails
 }
 \description{
-this function extract all emails from a web page
+this function extract all emails from a web page and return it as an R list
 }

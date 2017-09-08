@@ -14,7 +14,7 @@
     {
       install.packages("stringr");
     }
-   #installing stringi
+   #installing xlsx
   if(("xlsx" %in% rownames(installed.packages())) == FALSE)
     {
       install.packages("xlsx");

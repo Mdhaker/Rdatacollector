@@ -4,7 +4,7 @@
 \alias{searchFromTwitter}
 \title{Search Twitter data}
 \usage{
-searchFromTwitter(query, rootPath = "/home/dhaker/Desktop/Ghandi/")
+searchFromTwitter(query, rootPath)
 }
 \arguments{
 \item{query}{text query to use for the search}
@@ -12,5 +12,5 @@ searchFromTwitter(query, rootPath = "/home/dhaker/Desktop/Ghandi/")
 \item{rootPath}{path to save the generated results}
 }
 \description{
-This function searchs Tweets of the last 7 days from twitter from using a text query, then parse the result into an R dataframe and spreedSheet xls
+This function searchs Tweets of the past seven days (week) from twitter using a text query, then parse the result into an R dataframe and also creates an excel spreedSheet
 }

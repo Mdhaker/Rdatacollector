@@ -11,12 +11,12 @@ collectWebSiteData(url, excelpath, downloadpath)
 
 \item{excelpath}{Path to the excel file}
 
-\item{downloadpath}{path to download directory}
+\item{downloadpath}{path to the downloaded media files}
 }
 \value{
 void
 }
 \description{
-this function crawls a whole website for the requested data and save each scraped page into
-an excel sheet, and download the availble media in a sepcific directory
+collectWebSiteData crawls a whole website for the requested data and save each scraped page into
+an excel sheet, and download the availble media files in a sepcific directory
 }

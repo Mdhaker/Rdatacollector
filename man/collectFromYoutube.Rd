@@ -4,7 +4,7 @@
 \alias{collectFromYoutube}
 \title{Collect youtube data}
 \usage{
-collectFromYoutube(type, id, rootPath = "/home/dhaker/Desktop/Ghandi/")
+collectFromYoutube(type, id, rootPath)
 }
 \arguments{
 \item{type}{element type to fetch ("activity","playlist","comment","subscription","caption")}
@@ -17,6 +17,6 @@ collectFromYoutube(type, id, rootPath = "/home/dhaker/Desktop/Ghandi/")
 R dataframe representing the result node
 }
 \description{
-This function collect data about a specific youtube element attached to videos and channels including activities, playlists, subscriptions, comments and video captions track
+This function collect data about a specific youtube element attached to videos and channels including activities, playlists, subscriptions, comments and video captions tracks
 then parse it and save it into an R dataframe and an excel spredsheet file.
 }

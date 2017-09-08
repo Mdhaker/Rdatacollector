@@ -1,15 +1,19 @@
 Package: datacollector
-Title: RdataCollector
+Title: R package for automatic data collection
 Version: 0.1
 Authors@R: person("MDA", "Abdeljawed", email = "med.dhaker.abdeljawed@gmail.com", role = c("aut", "cre"))
-Description: this package collects data from web pages and social media networks
+Author: Med Dhaker Abdeljawed
+Maintainer: Med Dhaker Abdeljawed <med.dhaker.abdeljawed@gmail.com>
+Description: A suite of functions and tools made to automate data collection from the internet, social media networks and webpages.
 License: Free
+Imports : rJava, stringr, xlsx
 Depends: R (>= 3.2.3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
+Repository : github
 Prerequisite:
 1- Setup java environment : including JAVA_HOME and jre/jdk  path.
 2- Setup Apache Zookeeper  : Download Zookeeper from https://zookeeper.apache.org/releases.html#download, Start server instance : https://zookeeper.apache.org/doc/r3.3.3/zookeeperStarted.html#sc_InstallingSingleMode
 3- Setup Apache Drill : download drill from https://drill.apache.org/download/ and start server instance : https://drill.apache.org/docs/starting-drill-in-distributed-mode/
-Note : the package should run in the same node with drillbit instance
+  Note : the package should run in the same node with drillbit instance

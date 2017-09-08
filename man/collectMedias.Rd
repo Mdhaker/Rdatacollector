@@ -15,5 +15,5 @@ collectMedias(url, media)
 list of medias
 }
 \description{
-this function exctract all medias such images, videos, audio, documents.. from a web page
+this function extract all medias such images, videos, audio, documents.. from a web page
 }

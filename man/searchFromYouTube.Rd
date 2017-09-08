@@ -4,7 +4,7 @@
 \alias{searchFromYouTube}
 \title{Search Youtube data}
 \usage{
-searchFromYouTube(query, rootPath = "/home/dhaker/Desktop/Ghandi/")
+searchFromYouTube(query, rootPath)
 }
 \arguments{
 \item{query}{text query to use for the search}
@@ -12,5 +12,5 @@ searchFromYouTube(query, rootPath = "/home/dhaker/Desktop/Ghandi/")
 \item{rootPath}{path to save the generated results}
 }
 \description{
-This function search for videos and channels from youtube using a text query, then parse the result into an R dataframe and spreedSheet xls
+This function search for videos and channels from youtube using a text query, then parse the result into an R dataframe and also an excel spreedSheet
 }

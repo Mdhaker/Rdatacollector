@@ -4,17 +4,17 @@
 \alias{collectFacebookNodes}
 \title{Collect facebook data}
 \usage{
-collectFacebookNodes(nodeid, edge = "feed", user = FALSE,
-  rootPath = "/home/dhaker/Desktop/Ghandi/")
+collectFacebookNodes(nodeid, edge = "feed", user = FALSE, rootPath)
 }
 \arguments{
-\item{nodeid}{Id if the target facebook node}
+\item{nodeid}{Id of the target facebook node}
 
-\item{user}{FALSE to use an application based call, TRUE t o use Autenticated calls (used to fetch private groups and events)}
+\item{user}{FALSE to use an application based call, TRUE to use an Autenticated call (used to fetch private groups and events)}
 
 \item{rootPath}{path to save the generated results}
 }
 \description{
-This function collect data from facebook (nodes/edge) couple such posts and feed in pages, groups and events,
+This function collect data from a facebook node that could be a page, group, event or else based on a given
+edge which represents the type of data to collect such, posts and feed
 then parse it and save into an R dataframe and spredsheet excel file.
 }

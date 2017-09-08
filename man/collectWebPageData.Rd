@@ -9,16 +9,14 @@ collectWebPageData(excelpath, url)
 \arguments{
 \item{excelpath}{Path to the excel file}
 
-\item{url}{url of the target web page11}
+\item{url}{url of the target web page}
 }
 \value{
 void
 }
 \description{
-This function scraps data from a web page and save it into an excel sheet. </<br>
-Data such : Email, phones numbers, medias, links, social media links, and html tables
+This function scraps data from a web page and save it into an excel sheet.
 }
 \details{
-Example of usage :
-collectWebPageData(<path\file.xls>,"https://www.apec.fr/")
+Data such : Email, phones numbers, medias, links, social media links, and html tables
 }

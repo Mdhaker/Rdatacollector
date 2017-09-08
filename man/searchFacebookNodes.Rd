@@ -4,7 +4,7 @@
 \alias{searchFacebookNodes}
 \title{Search facebook data}
 \usage{
-searchFacebookNodes(query, rootPath = "/home/dhaker/Desktop/Ghandi/")
+searchFacebookNodes(query, rootPath)
 }
 \arguments{
 \item{query}{text query to use for the search}
@@ -12,6 +12,6 @@ searchFacebookNodes(query, rootPath = "/home/dhaker/Desktop/Ghandi/")
 \item{rootPath}{path to save the generated results}
 }
 \description{
-This function searchs facebook nodes including groups and events and pages,
-then parse the results and save into an R dataframe and spredsheet excel file.
+This function searchs facebook nodes including groups, events and pages;
+then parse the results and save into an R dataframe and an excel spredsheet file.
 }

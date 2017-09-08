@@ -13,5 +13,5 @@ collectPhones(url)
 list of phone numbers
 }
 \description{
-this function exctract all phone numbers from a web page
+this function extract all phone numbers from a web page and return it as an R list
 }

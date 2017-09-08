@@ -2,8 +2,170 @@
 * using R version 3.2.3 (2015-12-10)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
-* checking for file ‘./DESCRIPTION’ ... ERROR
-Required fields missing or empty:
-  ‘Author’ ‘Maintainer’
+* checking for file ‘./DESCRIPTION’ ... OK
+* this is package ‘datacollector’ version ‘0.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... WARNING
+Found the following executable files:
+  inst/webDriver/chromedriver
+  inst/webDriver/chromedriver.exe
+Source packages should not contain undeclared executable files.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  ..pdf
+  .Rhistory
+  .gitignore
+  ..Rcheck
+  .Rd2pdf16369
+  .Rd2pdf20411
+  .Rd2pdf20420
+  .Rd2pdf20497
+  .Rd2pdf20506
+  .Rd2pdf20515
+  .Rd2pdf20555
+  .Rd2pdf21010
+  .Rd2pdf30741
+  .Rd2pdf30751
+  .Rd2pdf5432
+  .Rd2pdf5446
+  .Rd2pdf5456
+  .Rd2pdf5562
+  .Rd2pdf5599
+  .Rproj.user
+  .git
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘datacollector’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is 65.3Mb
+  sub-directories of 1Mb or more:
+    java       51.9Mb
+    webDriver  13.4Mb
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... WARNING
+Non-standard license specification:
+  Free
+Standardizable: FALSE
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Found the following directory with the name of a check directory:
+  ./..Rcheck
+Most likely, these were included erroneously.
+Found the following directories with names of Rd2pdf directories:
+  ./.Rd2pdf16369
+  ./.Rd2pdf20411
+  ./.Rd2pdf20420
+  ./.Rd2pdf20497
+  ./.Rd2pdf20506
+  ./.Rd2pdf20515
+  ./.Rd2pdf20555
+  ./.Rd2pdf21010
+  ./.Rd2pdf30741
+  ./.Rd2pdf30751
+  ./.Rd2pdf5432
+  ./.Rd2pdf5446
+  ./.Rd2pdf5456
+  ./.Rd2pdf5562
+  ./.Rd2pdf5599
+Most likely, these were included erroneously.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... WARNING
+Error : .onLoad failed in loadNamespace() for 'datacollector', details:
+  call: rownames(installed.packages())
+  error: could not find function "installed.packages"
+Error: package or namespace load failed for ‘datacollector’
+Execution halted
+
+It looks like this package (or one of its dependent packages) has an
+unstated dependence on a standard package.  All dependencies must be
+declared in DESCRIPTION.
+See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+manual.
+* checking whether the package can be unloaded cleanly ... WARNING
+Error : .onLoad failed in loadNamespace() for 'datacollector', details:
+  call: rownames(installed.packages())
+  error: could not find function "installed.packages"
+Error: package or namespace load failed for ‘datacollector’
+Execution halted
+* checking whether the namespace can be loaded with stated dependencies ... WARNING
+Error: .onLoad failed in loadNamespace() for 'datacollector', details:
+  call: rownames(installed.packages())
+  error: could not find function "installed.packages"
+Execution halted
+
+A namespace must be able to be loaded with just the base namespace
+loaded: otherwise if the namespace gets loaded by a saved object, the
+session will be unable to start.
+
+Probably some imports need to be declared in the NAMESPACE file.
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Installing package into ‘/tmp/RtmpUiEjxg/RLIBS_3706631ec56a’
+(as ‘lib’ is unspecified)
+Error : .onLoad failed in loadNamespace() for 'datacollector', details:
+  call: contrib.url(repos, type)
+  error: trying to use CRAN without setting a mirror
+Error: package or namespace load failed for ‘datacollector’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+Error: package or namespace load failed for ‘datacollector’
+Call sequence:
+2: stop(gettextf("package or namespace load failed for %s", sQuote(package)), 
+       call. = FALSE, domain = NA)
+1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+Execution halted
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+File ‘datacollector/R/zzz.R’:
+  .onLoad calls:
+    installed.packages()
+    installed.packages()
+    installed.packages()
+    installed.packages()
+    print("please setup java envirement")
+
+Package startup functions should use ‘packageStartupMessage’ to
+  generate messages.
+Package startup functions should not call ‘installed.packages’.
+See section ‘Good practice’ in '?.onAttach'.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘enableDebug’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'collectFacebookNodes'
+  ‘edge’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking examples ... NONE
+* checking PDF version of manual ... OK
 * DONE
-Status: 1 ERROR
+Status: 9 WARNINGs, 4 NOTEs
